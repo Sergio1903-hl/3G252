@@ -1,0 +1,48 @@
+@startuml
+title Diagrama de Clases - PacMan
+
+' ==== Clases principales ====
+class Menu
+class Nivel
+class Jugador
+class Fantasma
+class FantasmaDebil
+class FantasmaFuerte
+class Fruta
+class Poder
+class Camino
+class Obstaculo
+class Estado
+class Recompensa
+class Puntuacion
+
+' ==== Relaciones "tiene" (composición/agregación) ====
+Menu *-- Nivel
+Nivel *-- Jugador
+Nivel *-- Fantasma
+Nivel *-- Fruta
+Nivel *-- Poder
+Nivel *-- Camino
+Nivel *-- Obstaculo
+
+Jugador *-- Puntuacion
+Jugador *-- Estado
+
+Fantasma *-- Estado
+FantasmaDebil *-- Estado
+FantasmaFuerte *-- Estado
+
+' ==== Relaciones "usa" ====
+Jugador ..> Fruta        : usa >
+Jugador ..> Poder        : usa >
+Jugador ..> Camino       : usa >
+Jugador ..> Obstaculo    : usa >
+
+Fantasma ..> Jugador     : persigue >
+Fantasma ..> Camino      : se mueve en >
+
+' ==== Herencia ====
+FantasmaDebil -|> Fantasma
+FantasmaFuerte -|> Fantasma
+
+@enduml
